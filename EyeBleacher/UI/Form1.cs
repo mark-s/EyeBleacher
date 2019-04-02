@@ -16,9 +16,9 @@ namespace EyeBleacher.UI
         {
             InitializeComponent();
 
-            _cuteSubreddit = new EyeBleachGetter(new CuteUrls());
-            _wholesomeSubreddit = new EyeBleachGetter(new WholesomeUrls());
-            _coolSubreddit = new EyeBleachGetter(new CoolUrls());
+            _cuteSubreddit = new EyeBleachService(new CuteUrls());
+            _wholesomeSubreddit = new EyeBleachService(new WholesomeUrls());
+            _coolSubreddit = new EyeBleachService(new CoolUrls());
         }
 
         private async void CuteButton_Click(object sender, EventArgs e)

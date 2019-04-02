@@ -2,6 +2,8 @@
 {
     public interface IUrlCollection
     {
+        int Count { get; }
+
         string[] Urls { get; }
     }
 }

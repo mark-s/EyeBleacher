@@ -4,6 +4,8 @@ namespace EyeBleacher.UrlCollections
 {
     public class WholesomeUrls : IUrlCollection
     {
+        public int Count => Urls.Length;
+
         // List of subreddits that can be used to choose pictures from, feel free to add on to them
         public string[] Urls => new[]{
             "https://www.reddit.com/r/wholesomememes/hot.json?sort=hot",
@@ -14,7 +16,6 @@ namespace EyeBleacher.UrlCollections
             // Append any further subreddits here
         };
 
-
-
     }
+
 }

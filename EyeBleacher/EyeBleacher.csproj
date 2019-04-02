@@ -52,7 +52,7 @@
     <Compile Include="Interfaces\IGetRandom.cs" />
     <Compile Include="Services\RandomIntService.cs" />
     <Compile Include="Services\SubredditImageInfo.cs" />
-    <Compile Include="Services\EyeBleachGetter.cs" />
+    <Compile Include="Services\EyeBleachService.cs" />
     <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,7 +65,7 @@
     <Compile Include="UrlCollections\CoolUrls.cs" />
     <Compile Include="UrlCollections\CuteUrls.cs" />
     <Compile Include="Interfaces\IUrlCollection.cs" />
-    <Compile Include="UrlCollections\UrlCollectionExtensions.cs" />
+    <Compile Include="Services\ListExtensions.cs" />
     <Compile Include="UrlCollections\WholesomeUrls.cs" />
     <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

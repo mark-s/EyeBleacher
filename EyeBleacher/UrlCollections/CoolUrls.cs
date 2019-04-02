@@ -4,6 +4,8 @@ namespace EyeBleacher.UrlCollections
 {
     public class CoolUrls : IUrlCollection
     {
+        public int Count => Urls.Length;
+
         // List of subreddits that can be used to choose pictures from, feel free to add on to them
         public string[] Urls => new[]{
             "https://www.reddit.com/r/astronomy/hot.json?sort=hot",
