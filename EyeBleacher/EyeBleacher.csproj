@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\RedditDTO.cs" />
+    <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="SubredditImageInfo.cs" />
     <Compile Include="Subreddits\CoolSubredditData.cs" />
     <Compile Include="Subreddits\CuteSubredditData.cs" />

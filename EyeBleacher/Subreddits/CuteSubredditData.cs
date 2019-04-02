@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using EyeBleacher.DTOs;
+using EyeBleacher.Helpers;
 using EyeBleacher.SubredditUrlProviders;
 using Newtonsoft.Json;
 
@@ -10,16 +10,17 @@ namespace EyeBleacher.Subreddits
     public class CuteSubredditData : IGetSubredditImage
     {
         private readonly ISubredditUrlProvider _urlProvider;
+        private readonly IGetRandom _randomSource;
 
-        public CuteSubredditData(ISubredditUrlProvider urlProvider)
+        public CuteSubredditData(ISubredditUrlProvider urlProvider, IGetRandom randomSource)
         {
             _urlProvider = urlProvider;
+            _randomSource = randomSource;
         }
 
         public SubredditImageInfo GetImageFromSubreddit()
         {
             var client = new WebClient();
-            var random = new Random();
             var url = _urlProvider.PickRandomSubreddit();
             var cuteSubredditJsonDataRAW = client.DownloadString(url);
 
@@ -56,9 +57,9 @@ namespace EyeBleacher.Subreddits
             imageTitle = imageTitle.Where(c => c != null).ToArray();
             postAuthor = postAuthor.Where(c => c != null).ToArray();
             subredditName = subredditName.Where(c => c != null).ToArray();
-            var randInt = random.Next(0, imageLinks.Length);
+            var randInt = _randomSource.GetNext(imageLinks.Length);
 
-            
+
             return new SubredditImageInfo(imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt]);
         }
 
