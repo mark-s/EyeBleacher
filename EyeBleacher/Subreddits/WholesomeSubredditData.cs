@@ -6,26 +6,25 @@ using Newtonsoft.Json;
 
 namespace EyeBleacher.Subreddits
 {
-
-    class WholesomeSubredditData
+    public class WholesomeSubredditData
     {
-        public static string[] getRandomWholesomeURL()
+        public string[] GetRandomWholesomeUrl()
         {
-            WebClient client = new WebClient();
-            Random random = new Random();
-            string url = pickRandomWholesomeSubreddit();
-            string wholesomeSubredditJsonDataRAW = client.DownloadString(url);
+            var client = new WebClient();
+            var random = new Random();
+            var url = pickRandomWholesomeSubreddit();
+            var wholesomeSubredditJsonDataRAW = client.DownloadString(url);
 
-            string[] imageLinks = new string[25];
-            string[] imageTitle = new string[100];
-            string[] postAuthor = new string[25];
-            string[] subredditName = new string[25];
+            var imageLinks = new string[25];
+            var imageTitle = new string[100];
+            var postAuthor = new string[25];
+            var subredditName = new string[25];
 
             // This uses Newtonsoft.Json to deserialize the downloaded JSON data from reddit
-            RootObject usableJsonData = JsonConvert.DeserializeObject<RootObject>(wholesomeSubredditJsonDataRAW);
+            var usableJsonData = JsonConvert.DeserializeObject<RootObject>(wholesomeSubredditJsonDataRAW);
 
             // Go through the data from 
-            for (int i = 0; i < 25; i++)
+            for (var i = 0; i < 25; i++)
             {
                 // Get's rid of any of the links that aren't .jpg files
                 if (usableJsonData.data.children[i].data.url.EndsWith(".jpg"))
@@ -49,14 +48,14 @@ namespace EyeBleacher.Subreddits
             imageTitle = imageTitle.Where(c => c != null).ToArray();
             postAuthor = postAuthor.Where(c => c != null).ToArray();
             subredditName = subredditName.Where(c => c != null).ToArray();
-            int randInt = random.Next(0, imageLinks.Length);
+            var randInt = random.Next(0, imageLinks.Length);
 
             return new string[] { imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt] };
         }
 
-        public static string pickRandomWholesomeSubreddit()
+        public string pickRandomWholesomeSubreddit()
         {
-            Random random = new Random();
+            var random = new Random();
             // List of subreddits that can be used to choose pictures from, feel free to add on to them
             string[] wholesomeSubredditList = {
                 "https://www.reddit.com/r/wholesomememes/hot.json?sort=hot",
@@ -67,7 +66,7 @@ namespace EyeBleacher.Subreddits
                 // Append any further subreddits here
             };
 
-            int randInt = random.Next(0, wholesomeSubredditList.Length);
+            var randInt = random.Next(0, wholesomeSubredditList.Length);
 
             return wholesomeSubredditList[randInt];
         }

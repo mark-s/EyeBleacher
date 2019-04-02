@@ -6,18 +6,27 @@ namespace EyeBleacher
 {
     public partial class Form1 : Form
     {
+        private readonly CuteSubredditData _cuteSubreddit;
+        private readonly WholesomeSubredditData _wholesomeSubreddit;
+        private readonly CoolSubredditData _coolSubreddit;
+
         public Form1()
         {
             InitializeComponent();
+
+            _cuteSubreddit = new CuteSubredditData();
+            _wholesomeSubreddit = new WholesomeSubredditData();
+            _coolSubreddit = new CoolSubredditData();
+
         }
 
         private void cuteButton_Click(object sender, EventArgs e)
         {
-                string[] returnedData = CuteSubredditData.getRandomEyebleachURL();
-                string imageLink = returnedData[0];
-                string postTitle = returnedData[1];
-                string postAuthor = returnedData[2];
-                string subredditName = returnedData[3];
+                var returnedData = _cuteSubreddit.GetRandomEyebleachUrl();
+                var imageLink = returnedData[0];
+                var postTitle = returnedData[1];
+                var postAuthor = returnedData[2];
+                var subredditName = returnedData[3];
 
                 pictureBox1.ImageLocation = imageLink;
                 titleTextBox.Text = postTitle;
@@ -28,11 +37,11 @@ namespace EyeBleacher
 
         private void wholesomeButton_Click(object sender, EventArgs e)
         {
-                string[] returnedData = WholesomeSubredditData.getRandomWholesomeURL();
-                string imageLink = returnedData[0];
-                string postTitle = returnedData[1];
-                string postAuthor = returnedData[2];
-                string subredditName = returnedData[3];
+                var returnedData =_wholesomeSubreddit.GetRandomWholesomeUrl();
+                var imageLink = returnedData[0];
+                var postTitle = returnedData[1];
+                var postAuthor = returnedData[2];
+                var subredditName = returnedData[3];
 
                 pictureBox1.ImageLocation = imageLink;
                 titleTextBox.Text = postTitle;
@@ -42,11 +51,11 @@ namespace EyeBleacher
 
         private void coolButton_Click(object sender, EventArgs e)
         {
-                string[] returnedData = CoolSubredditData.getRandomCoolURL();
-                string imageLink = returnedData[0];
-                string postTitle = returnedData[1];
-                string postAuthor = returnedData[2];
-                string subredditName = returnedData[3];
+                var returnedData = _coolSubreddit.GetRandomCoolUrl();
+                var imageLink = returnedData[0];
+                var postTitle = returnedData[1];
+                var postAuthor = returnedData[2];
+                var subredditName = returnedData[3];
 
                 pictureBox1.ImageLocation = imageLink;
                 titleTextBox.Text = postTitle;
