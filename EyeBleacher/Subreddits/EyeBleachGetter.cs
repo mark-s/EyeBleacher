@@ -24,10 +24,10 @@ namespace EyeBleacher.Subreddits
             using (var client = new WebClient())
             {
                 var url = _urlCollection.GetRandomUrl();
-                var cuteSubredditJsonDataRAW = await client.DownloadStringTaskAsync(url);
+                var redditData = await client.DownloadStringTaskAsync(url);
 
                 // This uses Newtonsoft.Json to deserialize the downloaded JSON data from reddit
-                var subredditData = JsonConvert.DeserializeObject<SubredditRootDTO>(cuteSubredditJsonDataRAW);
+                var subredditData = JsonConvert.DeserializeObject<SubredditRootDTO>(redditData);
 
                 var subreddits = subredditData.data.children
                     .Where(i => i.data.url.EndsWith(".jpg"))
@@ -46,4 +46,7 @@ namespace EyeBleacher.Subreddits
         }
 
     }
+
+
+
 }
