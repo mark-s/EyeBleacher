@@ -6,13 +6,13 @@ using Newtonsoft.Json;
 
 namespace EyeBleacher.Subreddits
 {
-    public class CuteSubredditData
+    public class CuteSubredditData : IGetSubredditImage
     {
-        public  string[] GetRandomEyebleachUrl()
+        public SubredditImageInfo GetImageFromSubreddit()
         {
             var client = new WebClient();
             var random = new Random();
-            var url = pickRandomCuteSubreddit();
+            var url = PickRandomCuteSubreddit();
             var cuteSubredditJsonDataRAW = client.DownloadString(url);
 
             var imageLinks = new string[25];
@@ -50,10 +50,11 @@ namespace EyeBleacher.Subreddits
             subredditName = subredditName.Where(c => c != null).ToArray();
             var randInt = random.Next(0, imageLinks.Length);
 
-            return new string[] { imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt] };
+            
+            return new SubredditImageInfo(imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt]);
         }
 
-        public  string pickRandomCuteSubreddit()
+        private string PickRandomCuteSubreddit()
         {
             var random = new Random();
             // List of subreddits that can be used to choose pictures from, feel free to add on to them

@@ -6,9 +6,9 @@ namespace EyeBleacher
 {
     public partial class Form1 : Form
     {
-        private readonly CuteSubredditData _cuteSubreddit;
-        private readonly WholesomeSubredditData _wholesomeSubreddit;
-        private readonly CoolSubredditData _coolSubreddit;
+        private readonly IGetSubredditImage _cuteSubreddit;
+        private readonly IGetSubredditImage _wholesomeSubreddit;
+        private readonly IGetSubredditImage _coolSubreddit;
 
         public Form1()
         {
@@ -20,47 +20,33 @@ namespace EyeBleacher
 
         }
 
-        private void cuteButton_Click(object sender, EventArgs e)
+        private void CuteButton_Click(object sender, EventArgs e)
         {
-                var returnedData = _cuteSubreddit.GetRandomEyebleachUrl();
-                var imageLink = returnedData[0];
-                var postTitle = returnedData[1];
-                var postAuthor = returnedData[2];
-                var subredditName = returnedData[3];
+            var returnedData = _cuteSubreddit.GetImageFromSubreddit();
 
-                pictureBox1.ImageLocation = imageLink;
-                titleTextBox.Text = postTitle;
-                usernameTextBox.Text = postAuthor;
-                subredditTextBox.Text = subredditName;
+            pictureBox1.ImageLocation = returnedData.ImageLink;
+            titleTextBox.Text = returnedData.PostTitle;
+            usernameTextBox.Text = returnedData.PostAuthor;
+            subredditTextBox.Text = returnedData.SubredditName;
 
         }
 
-        private void wholesomeButton_Click(object sender, EventArgs e)
+        private void WholesomeButton_Click(object sender, EventArgs e)
         {
-                var returnedData =_wholesomeSubreddit.GetRandomWholesomeUrl();
-                var imageLink = returnedData[0];
-                var postTitle = returnedData[1];
-                var postAuthor = returnedData[2];
-                var subredditName = returnedData[3];
-
-                pictureBox1.ImageLocation = imageLink;
-                titleTextBox.Text = postTitle;
-                usernameTextBox.Text = postAuthor;
-                subredditTextBox.Text = subredditName;
+            var returnedData = _wholesomeSubreddit.GetImageFromSubreddit();
+            pictureBox1.ImageLocation = returnedData.ImageLink;
+            titleTextBox.Text = returnedData.PostTitle;
+            usernameTextBox.Text = returnedData.PostAuthor;
+            subredditTextBox.Text = returnedData.SubredditName;
         }
 
-        private void coolButton_Click(object sender, EventArgs e)
+        private void CoolButton_Click(object sender, EventArgs e)
         {
-                var returnedData = _coolSubreddit.GetRandomCoolUrl();
-                var imageLink = returnedData[0];
-                var postTitle = returnedData[1];
-                var postAuthor = returnedData[2];
-                var subredditName = returnedData[3];
-
-                pictureBox1.ImageLocation = imageLink;
-                titleTextBox.Text = postTitle;
-                usernameTextBox.Text = postAuthor;
-                subredditTextBox.Text = subredditName;
+            var returnedData = _coolSubreddit.GetImageFromSubreddit();
+            pictureBox1.ImageLocation = returnedData.ImageLink;
+            titleTextBox.Text = returnedData.PostTitle;
+            usernameTextBox.Text = returnedData.PostAuthor;
+            subredditTextBox.Text = returnedData.SubredditName;
         }
     }
 }

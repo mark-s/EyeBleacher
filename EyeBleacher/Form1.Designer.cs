@@ -51,7 +51,7 @@ namespace EyeBleacher
             this.cuteButton.TabIndex = 2;
             this.cuteButton.Text = "Something Cute";
             this.cuteButton.UseVisualStyleBackColor = true;
-            this.cuteButton.Click += new System.EventHandler(this.cuteButton_Click);
+            this.cuteButton.Click += new System.EventHandler(this.CuteButton_Click);
             // 
             // wholesomeButton
             // 
@@ -62,7 +62,7 @@ namespace EyeBleacher
             this.wholesomeButton.TabIndex = 4;
             this.wholesomeButton.Text = "Something Wholesome";
             this.wholesomeButton.UseVisualStyleBackColor = true;
-            this.wholesomeButton.Click += new System.EventHandler(this.wholesomeButton_Click);
+            this.wholesomeButton.Click += new System.EventHandler(this.WholesomeButton_Click);
             // 
             // coolButton
             // 
@@ -73,7 +73,7 @@ namespace EyeBleacher
             this.coolButton.TabIndex = 5;
             this.coolButton.Text = "Something Cool";
             this.coolButton.UseVisualStyleBackColor = true;
-            this.coolButton.Click += new System.EventHandler(this.coolButton_Click);
+            this.coolButton.Click += new System.EventHandler(this.CoolButton_Click);
             // 
             // pictureBox1
             // 

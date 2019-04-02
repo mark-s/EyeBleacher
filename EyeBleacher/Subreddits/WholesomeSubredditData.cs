@@ -6,9 +6,9 @@ using Newtonsoft.Json;
 
 namespace EyeBleacher.Subreddits
 {
-    public class WholesomeSubredditData
+    public class WholesomeSubredditData : IGetSubredditImage
     {
-        public string[] GetRandomWholesomeUrl()
+        public SubredditImageInfo GetImageFromSubreddit()
         {
             var client = new WebClient();
             var random = new Random();
@@ -50,10 +50,10 @@ namespace EyeBleacher.Subreddits
             subredditName = subredditName.Where(c => c != null).ToArray();
             var randInt = random.Next(0, imageLinks.Length);
 
-            return new string[] { imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt] };
+            return new SubredditImageInfo(imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt]);
         }
 
-        public string pickRandomWholesomeSubreddit()
+        private string pickRandomWholesomeSubreddit()
         {
             var random = new Random();
             // List of subreddits that can be used to choose pictures from, feel free to add on to them
