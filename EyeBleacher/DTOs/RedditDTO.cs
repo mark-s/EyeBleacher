@@ -91,7 +91,7 @@ namespace EyeBleacher.DTOs
 
     }
 
-    public class RootObject
+    public class SubredditRootDTO
     {
         public string kind { get; set; }
         public Data data { get; set; }

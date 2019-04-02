@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using EyeBleacher.DTOs;
 using EyeBleacher.Helpers;
@@ -24,43 +25,20 @@ namespace EyeBleacher.Subreddits
             var url = _urlProvider.PickRandomSubreddit();
             var cuteSubredditJsonDataRAW = client.DownloadString(url);
 
-            var imageLinks = new string[25];
-            var imageTitle = new string[100];
-            var postAuthor = new string[25];
-            var subredditName = new string[25];
-
             // This uses Newtonsoft.Json to deserialize the downloaded JSON data from reddit
-            var usableJsonData = JsonConvert.DeserializeObject<RootObject>(cuteSubredditJsonDataRAW);
+            var subredditData = JsonConvert.DeserializeObject<SubredditRootDTO>(cuteSubredditJsonDataRAW);
 
-            // Go through the data from 
-            for (var i = 0; i < 25; i++)
-            {
-                // Get's rid of any of the links that aren't .jpg files
-                if (usableJsonData.data.children[i].data.url.EndsWith(".jpg"))
-                {
-                    imageTitle[i] = usableJsonData.data.children[i].data.title;
-                    postAuthor[i] = usableJsonData.data.children[i].data.author;
-                    imageLinks[i] = usableJsonData.data.children[i].data.url;
-                    subredditName[i] = usableJsonData.data.children[i].data.subreddit_name_prefixed;
+            var subreddits = subredditData.data.children
+                                            .Where(i => i.data.url.EndsWith(".jpg"))
+                                            .Select(item => new SubredditImageInfo(
+                                                item.data.url,
+                                                item.data.title, 
+                                                "u/" + item.data.author, 
+                                                item.data.subreddit_name_prefixed))
+                                            .ToList();
 
-                }
-                else
-                {
-                    imageTitle[i] = null;
-                    postAuthor[i] = null;
-                    imageLinks[i] = null;
-                }
-            }
+            return subreddits[_randomSource.GetNext(subreddits.Count)];
 
-            // Clean arrays of any null elements
-            imageLinks = imageLinks.Where(c => c != null).ToArray();
-            imageTitle = imageTitle.Where(c => c != null).ToArray();
-            postAuthor = postAuthor.Where(c => c != null).ToArray();
-            subredditName = subredditName.Where(c => c != null).ToArray();
-            var randInt = _randomSource.GetNext(imageLinks.Length);
-
-
-            return new SubredditImageInfo(imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt]);
         }
 
     }

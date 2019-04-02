@@ -30,7 +30,7 @@ namespace EyeBleacher.Subreddits
             var subredditName = new string[25];
 
             // This uses Newtonsoft.Json to deserialize the downloaded JSON data from reddit
-            var usableJsonData = JsonConvert.DeserializeObject<RootObject>(wholesomeSubredditJsonDataRAW);
+            var usableJsonData = JsonConvert.DeserializeObject<SubredditRootDTO>(wholesomeSubredditJsonDataRAW);
 
             // Go through the data from 
             for (var i = 0; i < 25; i++)
