@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Forms;
-using EyeBleacher.Helpers;
 using EyeBleacher.Subreddits;
 using EyeBleacher.UrlCollections;
 
@@ -16,11 +15,9 @@ namespace EyeBleacher
         {
             InitializeComponent();
 
-            var randomiser = new RandomHelper();
-
-            _cuteSubreddit = new EyeBleachGetter(new CuteUrls(), randomiser);
-            _wholesomeSubreddit = new EyeBleachGetter(new WholesomeUrls(), randomiser);
-            _coolSubreddit = new EyeBleachGetter(new CoolUrls(), randomiser);
+            _cuteSubreddit = new EyeBleachGetter(new CuteUrls());
+            _wholesomeSubreddit = new EyeBleachGetter(new WholesomeUrls());
+            _coolSubreddit = new EyeBleachGetter(new CoolUrls());
 
         }
 

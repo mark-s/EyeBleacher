@@ -13,10 +13,10 @@ namespace EyeBleacher.Subreddits
         private readonly IUrlCollection _urlCollection;
         private readonly IGetRandom _randomSource;
 
-        public EyeBleachGetter(IUrlCollection urlCollection, IGetRandom randomSource)
+        public EyeBleachGetter(IUrlCollection urlCollection)
         {
             _urlCollection = urlCollection;
-            _randomSource = randomSource;
+            _randomSource = new RandomHelper();
         }
 
         public async Task<SubredditImageInfo> GetImageFromSubredditAsync()
@@ -38,6 +38,7 @@ namespace EyeBleacher.Subreddits
                         item.data.subreddit_name_prefixed))
                     .ToList();
 
+                // return a random item
                 return subreddits[_randomSource.GetNext(subreddits.Count)];
             }
                 
