@@ -2,6 +2,6 @@
 {
     public interface ISubredditUrlProvider
     {
-        string PickRandomSubreddit();
+        string GetRandomSubredditUrl();
     }
 }

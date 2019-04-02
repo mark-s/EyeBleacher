@@ -4,20 +4,21 @@ namespace EyeBleacher.SubredditUrlProviders
 {
     public class Cool : ISubredditUrlProvider
     {
-        public string PickRandomSubreddit()
+        // List of subreddits that can be used to choose pictures from, feel free to add on to them
+        private string[] _coolSubreddits = {
+            "https://www.reddit.com/r/astronomy/hot.json?sort=hot",
+            "https://www.reddit.com/r/EarthPorn/hot.json?sort=hot",
+            "https://www.reddit.com/r/MildlyInteresting/hot.json?sort=hot"
+            // Append any further subreddits here
+        };
+
+
+        public string GetRandomSubredditUrl()
         {
             var random = new Random();
-            // List of subreddits that can be used to choose pictures from, feel free to add on to them
-            string[] coolSubredditList = {
-                "https://www.reddit.com/r/astronomy/hot.json?sort=hot",
-                "https://www.reddit.com/r/EarthPorn/hot.json?sort=hot",
-                "https://www.reddit.com/r/MildlyInteresting/hot.json?sort=hot"
-                // Append any further subreddits here
-            };
+            var randInt = random.Next(0, _coolSubreddits.Length);
 
-            var randInt = random.Next(0, coolSubredditList.Length);
-
-            return coolSubredditList[randInt];
+            return _coolSubreddits[randInt];
         }
     }
 }

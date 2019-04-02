@@ -4,22 +4,24 @@ namespace EyeBleacher.SubredditUrlProviders
 {
     public class Wholesome : ISubredditUrlProvider
     {
-        public string PickRandomSubreddit()
+        // List of subreddits that can be used to choose pictures from, feel free to add on to them
+        private string[] _wholesomeSubreddits = {
+            "https://www.reddit.com/r/wholesomememes/hot.json?sort=hot",
+            "https://www.reddit.com/r/MadeMeSmile/hot.json?sort=hot",
+            "https://www.reddit.com/r/WholesomePics/hot.json?sort=hot",
+            "https://www.reddit.com/r/WholesomeComics/hot.json?sort=hot",
+            "https://www.reddit.com/r/BeforeNAfterAdoption/hot.json?sort=hot"
+            // Append any further subreddits here
+        };
+
+
+        public string GetRandomSubredditUrl()
         {
             var random = new Random();
-            // List of subreddits that can be used to choose pictures from, feel free to add on to them
-            string[] wholesomeSubredditList = {
-                "https://www.reddit.com/r/wholesomememes/hot.json?sort=hot",
-                "https://www.reddit.com/r/MadeMeSmile/hot.json?sort=hot",
-                "https://www.reddit.com/r/WholesomePics/hot.json?sort=hot",
-                "https://www.reddit.com/r/WholesomeComics/hot.json?sort=hot",
-                "https://www.reddit.com/r/BeforeNAfterAdoption/hot.json?sort=hot"
-                // Append any further subreddits here
-            };
 
-            var randInt = random.Next(0, wholesomeSubredditList.Length);
+            var randInt = random.Next(0, _wholesomeSubreddits.Length);
 
-            return wholesomeSubredditList[randInt];
+            return _wholesomeSubreddits[randInt];
         }
     }
 }

@@ -21,7 +21,7 @@ namespace EyeBleacher.Subreddits
         public SubredditImageInfo GetImageFromSubreddit()
         {
             var client = new WebClient();
-            var url = _urlProvider.PickRandomSubreddit();
+            var url = _urlProvider.GetRandomSubredditUrl();
             var cuteSubredditJsonDataRAW = client.DownloadString(url);
 
             // This uses Newtonsoft.Json to deserialize the downloaded JSON data from reddit
