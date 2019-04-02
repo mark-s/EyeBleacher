@@ -1,4 +1,6 @@
-﻿namespace EyeBleacher.UrlCollections
+﻿using EyeBleacher.Interfaces;
+
+namespace EyeBleacher.UrlCollections
 {
     public class WholesomeUrls : IUrlCollection
     {

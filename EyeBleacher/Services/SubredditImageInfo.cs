@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EyeBleacher
+namespace EyeBleacher.Services
 {
     public class SubredditImageInfo
     {

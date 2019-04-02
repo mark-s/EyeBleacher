@@ -2,13 +2,13 @@
 using System.Net;
 using System.Threading.Tasks;
 using EyeBleacher.DTOs;
-using EyeBleacher.Helpers;
+using EyeBleacher.Interfaces;
 using EyeBleacher.UrlCollections;
 using Newtonsoft.Json;
 
-namespace EyeBleacher.Subreddits
+namespace EyeBleacher.Services
 {
-    public class EyeBleachGetter : IGetSubredditImage
+    public class EyeBleachGetter : IGetSubredditImages
     {
         private readonly IUrlCollection _urlCollection;
         private readonly IGetRandom _randomSource;
@@ -16,10 +16,10 @@ namespace EyeBleacher.Subreddits
         public EyeBleachGetter(IUrlCollection urlCollection)
         {
             _urlCollection = urlCollection;
-            _randomSource = new RandomHelper();
+            _randomSource = new RandomIntService();
         }
 
-        public async Task<SubredditImageInfo> GetImageFromSubredditAsync()
+        public async Task<SubredditImageInfo> GetImageAsync()
         {
             using (var client = new WebClient())
             {
@@ -27,10 +27,10 @@ namespace EyeBleacher.Subreddits
                 var redditData = await client.DownloadStringTaskAsync(url);
 
                 // This uses Newtonsoft.Json to deserialize the downloaded JSON data from reddit
-                var subredditData = JsonConvert.DeserializeObject<SubredditRootDTO>(redditData);
+                var subredditData = JsonConvert.DeserializeObject<RedditRootDTO>(redditData);
 
                 var subreddits = subredditData.data.children
-                    .Where(i => i.data.url.EndsWith(".jpg"))
+                    .Where(i => i.data.url.EndsWith(".png") || i.data.url.EndsWith(".jpg"))
                     .Select(item => new SubredditImageInfo(
                         item.data.url,
                         item.data.title,
@@ -39,7 +39,7 @@ namespace EyeBleacher.Subreddits
                     .ToList();
 
                 // return a random item
-                return subreddits[_randomSource.GetNext(subreddits.Count)];
+                return subreddits[_randomSource.GetNext(subreddits.Count-1)];
             }
                 
 

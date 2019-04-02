@@ -1,4 +1,4 @@
-namespace EyeBleacher
+namespace EyeBleacher.UI
 {
     partial class Form1
     {

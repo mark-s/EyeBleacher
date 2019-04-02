@@ -1,15 +1,16 @@
 using System;
 using System.Windows.Forms;
-using EyeBleacher.Subreddits;
+using EyeBleacher.Interfaces;
+using EyeBleacher.Services;
 using EyeBleacher.UrlCollections;
 
-namespace EyeBleacher
+namespace EyeBleacher.UI
 {
     public partial class Form1 : Form
     {
-        private readonly IGetSubredditImage _cuteSubreddit;
-        private readonly IGetSubredditImage _wholesomeSubreddit;
-        private readonly IGetSubredditImage _coolSubreddit;
+        private readonly IGetSubredditImages _cuteSubreddit;
+        private readonly IGetSubredditImages _wholesomeSubreddit;
+        private readonly IGetSubredditImages _coolSubreddit;
 
         public Form1()
         {
@@ -18,24 +19,23 @@ namespace EyeBleacher
             _cuteSubreddit = new EyeBleachGetter(new CuteUrls());
             _wholesomeSubreddit = new EyeBleachGetter(new WholesomeUrls());
             _coolSubreddit = new EyeBleachGetter(new CoolUrls());
-
         }
 
         private async void CuteButton_Click(object sender, EventArgs e)
         {
-            var cuteStuff = await _cuteSubreddit.GetImageFromSubredditAsync();
+            var cuteStuff = await _cuteSubreddit.GetImageAsync();
             UpdateUi(cuteStuff);
         }
 
         private async void WholesomeButton_Click(object sender, EventArgs e)
         {
-            var wholesomeStuff = await _wholesomeSubreddit.GetImageFromSubredditAsync();
+            var wholesomeStuff = await _wholesomeSubreddit.GetImageAsync();
             UpdateUi(wholesomeStuff);
         }
 
         private async void CoolButton_Click(object sender, EventArgs e)
         {
-            var coolStuff = await _coolSubreddit.GetImageFromSubredditAsync();
+            var coolStuff = await _coolSubreddit.GetImageAsync();
             UpdateUi(coolStuff);
         }
 

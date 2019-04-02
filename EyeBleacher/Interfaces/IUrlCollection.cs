@@ -1,4 +1,4 @@
-﻿namespace EyeBleacher.UrlCollections
+﻿namespace EyeBleacher.Interfaces
 {
     public interface IUrlCollection
     {

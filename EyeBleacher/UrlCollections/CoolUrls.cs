@@ -1,4 +1,6 @@
-﻿namespace EyeBleacher.UrlCollections
+﻿using EyeBleacher.Interfaces;
+
+namespace EyeBleacher.UrlCollections
 {
     public class CoolUrls : IUrlCollection
     {
@@ -9,8 +11,6 @@
             "https://www.reddit.com/r/MildlyInteresting/hot.json?sort=hot"
             // Append any further subreddits here
         };
-
-
 
     }
 }

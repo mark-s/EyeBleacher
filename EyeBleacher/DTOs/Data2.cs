@@ -2,7 +2,7 @@
 
 namespace EyeBleacher.DTOs
 {
-    public class SubredditData
+    public class Data2
     {
         public object approved_at_utc { get; set; }
         public string subreddit { get; set; }
@@ -16,7 +16,7 @@ namespace EyeBleacher.DTOs
         public List<object> link_flair_richtext { get; set; }
         public string subreddit_name_prefixed { get; set; }
         public bool hidden { get; set; }
-        public float pwls { get; set; }
+        public float? pwls { get; set; }
         public object link_flair_css_class { get; set; }
         public float downs { get; set; }
         public float? thumbnail_height { get; set; }
@@ -48,7 +48,7 @@ namespace EyeBleacher.DTOs
         public object mod_note { get; set; }
         public float created { get; set; }
         public string link_flair_type { get; set; }
-        public float wls { get; set; }
+        public float? wls { get; set; }
         public object banned_by { get; set; }
         public string author_flair_type { get; set; }
         public bool contest_mode { get; set; }

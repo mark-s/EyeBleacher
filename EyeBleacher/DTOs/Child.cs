@@ -1,8 +1,8 @@
 ﻿namespace EyeBleacher.DTOs
 {
-    public class RedditRootDTO
+    public class Child
     {
         public string kind { get; set; }
-        public Data data { get; set; }
+        public Data2 data { get; set; }
     }
 }

@@ -1,14 +1,15 @@
-﻿using EyeBleacher.Helpers;
+﻿using EyeBleacher.Interfaces;
+using EyeBleacher.Services;
 
 namespace EyeBleacher.UrlCollections
 {
     public static class UrlCollectionExtensions
     {
-        private static readonly RandomHelper _random;
+        private static readonly RandomIntService _random;
 
         static UrlCollectionExtensions()
         {
-            _random = new RandomHelper();
+            _random = new RandomIntService();
         }
 
         public static string GetRandomUrl(this IUrlCollection urlCollection)
