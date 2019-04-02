@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using EyeBleacher.DTOs;
 using EyeBleacher.Helpers;
@@ -8,12 +7,12 @@ using Newtonsoft.Json;
 
 namespace EyeBleacher.Subreddits
 {
-    public class CuteSubredditData : IGetSubredditImage
+    public class EyeBleachGetter : IGetSubredditImage
     {
         private readonly ISubredditUrlProvider _urlProvider;
         private readonly IGetRandom _randomSource;
 
-        public CuteSubredditData(ISubredditUrlProvider urlProvider, IGetRandom randomSource)
+        public EyeBleachGetter(ISubredditUrlProvider urlProvider, IGetRandom randomSource)
         {
             _urlProvider = urlProvider;
             _randomSource = randomSource;
@@ -32,8 +31,8 @@ namespace EyeBleacher.Subreddits
                                             .Where(i => i.data.url.EndsWith(".jpg"))
                                             .Select(item => new SubredditImageInfo(
                                                 item.data.url,
-                                                item.data.title, 
-                                                "u/" + item.data.author, 
+                                                item.data.title,
+                                                "u/" + item.data.author,
                                                 item.data.subreddit_name_prefixed))
                                             .ToList();
 

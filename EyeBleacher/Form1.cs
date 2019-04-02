@@ -18,9 +18,9 @@ namespace EyeBleacher
 
             var randomiser = new RandomHelper();
 
-            _cuteSubreddit = new CuteSubredditData(new Cute(), randomiser);
-            _wholesomeSubreddit = new WholesomeSubredditData(new Wholesome(), randomiser);
-            _coolSubreddit = new CoolSubredditData(new Cool(), randomiser);
+            _cuteSubreddit = new EyeBleachGetter(new Cute(), randomiser);
+            _wholesomeSubreddit = new EyeBleachGetter(new Wholesome(), randomiser);
+            _coolSubreddit = new EyeBleachGetter(new Cool(), randomiser);
 
         }
 
