@@ -28,13 +28,9 @@ namespace EyeBleacher.Services
                 var subredditData = JsonConvert.DeserializeObject<RedditRootDTO>(json);
 
                 var subreddits = subredditData.data.children
-                    .Where(i => i.data.url.EndsWith(".png") || i.data.url.EndsWith(".jpg"))
-                    .Select(item => new SubredditImageInfo(
-                        item.data.url,
-                        item.data.title,
-                        "u/" + item.data.author,
-                        item.data.subreddit_name_prefixed))
-                    .ToList();
+                                            .Where(IsAnImage)
+                                            .Select(AsSubredditImageInfo)
+                                            .ToList();
 
                 // return a random item
                 return subreddits.GetRandomItem();
@@ -42,6 +38,11 @@ namespace EyeBleacher.Services
 
         }
 
+        private bool IsAnImage(Child item)
+            => item.data.url.EndsWith(".png") || item.data.url.EndsWith(".jpg");
+
+        private SubredditImageInfo AsSubredditImageInfo(Child item)
+            => new SubredditImageInfo(item.data.url, item.data.title, "u/" + item.data.author, item.data.subreddit_name_prefixed);
     }
 
 }
