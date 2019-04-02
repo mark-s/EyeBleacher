@@ -51,7 +51,7 @@ namespace EyeBleacher
             this.cuteButton.TabIndex = 2;
             this.cuteButton.Text = "Something Cute";
             this.cuteButton.UseVisualStyleBackColor = true;
-            this.cuteButton.Click += new System.EventHandler(this.CuteButton_Click);
+            this.cuteButton.Click += new System.EventHandler( this.CuteButton_Click);
             // 
             // wholesomeButton
             // 

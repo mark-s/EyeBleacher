@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 using EyeBleacher.Helpers;
 using EyeBleacher.Subreddits;
-using EyeBleacher.SubredditUrlProviders;
+using EyeBleacher.UrlCollections;
 
 namespace EyeBleacher
 {
@@ -18,28 +18,28 @@ namespace EyeBleacher
 
             var randomiser = new RandomHelper();
 
-            _cuteSubreddit = new EyeBleachGetter(new Cute(), randomiser);
-            _wholesomeSubreddit = new EyeBleachGetter(new Wholesome(), randomiser);
-            _coolSubreddit = new EyeBleachGetter(new Cool(), randomiser);
+            _cuteSubreddit = new EyeBleachGetter(new CuteUrls(), randomiser);
+            _wholesomeSubreddit = new EyeBleachGetter(new WholesomeUrls(), randomiser);
+            _coolSubreddit = new EyeBleachGetter(new CoolUrls(), randomiser);
 
         }
 
-        private void CuteButton_Click(object sender, EventArgs e)
+        private async void CuteButton_Click(object sender, EventArgs e)
         {
-            var returnedData = _cuteSubreddit.GetImageFromSubreddit();
-            UpdateUi(returnedData);
+            var cuteStuff = await _cuteSubreddit.GetImageFromSubredditAsync();
+            UpdateUi(cuteStuff);
         }
 
-        private void WholesomeButton_Click(object sender, EventArgs e)
+        private async void WholesomeButton_Click(object sender, EventArgs e)
         {
-            var returnedData = _wholesomeSubreddit.GetImageFromSubreddit();
-            UpdateUi(returnedData);
+            var wholesomeStuff = await _wholesomeSubreddit.GetImageFromSubredditAsync();
+            UpdateUi(wholesomeStuff);
         }
 
-        private void CoolButton_Click(object sender, EventArgs e)
+        private async void CoolButton_Click(object sender, EventArgs e)
         {
-            var returnedData = _coolSubreddit.GetImageFromSubreddit();
-            UpdateUi(returnedData);
+            var coolStuff = await _coolSubreddit.GetImageFromSubredditAsync();
+            UpdateUi(coolStuff);
         }
 
         private void UpdateUi(SubredditImageInfo returnedData)

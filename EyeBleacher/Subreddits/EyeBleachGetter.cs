@@ -1,28 +1,29 @@
 ﻿using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using EyeBleacher.DTOs;
 using EyeBleacher.Helpers;
-using EyeBleacher.SubredditUrlProviders;
+using EyeBleacher.UrlCollections;
 using Newtonsoft.Json;
 
 namespace EyeBleacher.Subreddits
 {
     public class EyeBleachGetter : IGetSubredditImage
     {
-        private readonly ISubredditUrlProvider _urlProvider;
+        private readonly IUrlCollection _urlCollection;
         private readonly IGetRandom _randomSource;
 
-        public EyeBleachGetter(ISubredditUrlProvider urlProvider, IGetRandom randomSource)
+        public EyeBleachGetter(IUrlCollection urlCollection, IGetRandom randomSource)
         {
-            _urlProvider = urlProvider;
+            _urlCollection = urlCollection;
             _randomSource = randomSource;
         }
 
-        public SubredditImageInfo GetImageFromSubreddit()
+        public async Task<SubredditImageInfo> GetImageFromSubredditAsync()
         {
             var client = new WebClient();
-            var url = _urlProvider.GetRandomSubredditUrl();
-            var cuteSubredditJsonDataRAW = client.DownloadString(url);
+            var url = _urlCollection.GetRandomUrl();
+            var cuteSubredditJsonDataRAW = await client.DownloadStringTaskAsync(url);
 
             // This uses Newtonsoft.Json to deserialize the downloaded JSON data from reddit
             var subredditData = JsonConvert.DeserializeObject<SubredditRootDTO>(cuteSubredditJsonDataRAW);

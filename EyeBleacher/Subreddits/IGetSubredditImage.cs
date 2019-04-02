@@ -1,7 +1,9 @@
-﻿namespace EyeBleacher.Subreddits
+﻿using System.Threading.Tasks;
+
+namespace EyeBleacher.Subreddits
 {
     interface IGetSubredditImage
     {
-        SubredditImageInfo GetImageFromSubreddit();
+        Task<SubredditImageInfo> GetImageFromSubredditAsync();
     }
 }

@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace EyeBleacher.SubredditUrlProviders
+﻿namespace EyeBleacher.UrlCollections
 {
-    public class Wholesome : ISubredditUrlProvider
+    public class WholesomeUrls : IUrlCollection
     {
         // List of subreddits that can be used to choose pictures from, feel free to add on to them
-        private string[] _wholesomeSubreddits = {
+        public string[] Urls => new[]{
             "https://www.reddit.com/r/wholesomememes/hot.json?sort=hot",
             "https://www.reddit.com/r/MadeMeSmile/hot.json?sort=hot",
             "https://www.reddit.com/r/WholesomePics/hot.json?sort=hot",
@@ -15,13 +13,6 @@ namespace EyeBleacher.SubredditUrlProviders
         };
 
 
-        public string GetRandomSubredditUrl()
-        {
-            var random = new Random();
 
-            var randInt = random.Next(0, _wholesomeSubreddits.Length);
-
-            return _wholesomeSubreddits[randInt];
-        }
     }
 }

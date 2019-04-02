@@ -58,10 +58,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subreddits\IGetSubredditImage.cs" />
-    <Compile Include="SubredditUrlProviders\Cool.cs" />
-    <Compile Include="SubredditUrlProviders\Cute.cs" />
-    <Compile Include="SubredditUrlProviders\ISubredditUrlProvider.cs" />
-    <Compile Include="SubredditUrlProviders\Wholesome.cs" />
+    <Compile Include="UrlCollections\CoolUrls.cs" />
+    <Compile Include="UrlCollections\CuteUrls.cs" />
+    <Compile Include="UrlCollections\IUrlCollection.cs" />
+    <Compile Include="UrlCollections\UrlCollectionExtensions.cs" />
+    <Compile Include="UrlCollections\WholesomeUrls.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
