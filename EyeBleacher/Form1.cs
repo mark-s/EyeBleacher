@@ -23,26 +23,23 @@ namespace EyeBleacher
         private void CuteButton_Click(object sender, EventArgs e)
         {
             var returnedData = _cuteSubreddit.GetImageFromSubreddit();
-
-            pictureBox1.ImageLocation = returnedData.ImageLink;
-            titleTextBox.Text = returnedData.PostTitle;
-            usernameTextBox.Text = returnedData.PostAuthor;
-            subredditTextBox.Text = returnedData.SubredditName;
-
+            UpdateUi(returnedData);
         }
 
         private void WholesomeButton_Click(object sender, EventArgs e)
         {
             var returnedData = _wholesomeSubreddit.GetImageFromSubreddit();
-            pictureBox1.ImageLocation = returnedData.ImageLink;
-            titleTextBox.Text = returnedData.PostTitle;
-            usernameTextBox.Text = returnedData.PostAuthor;
-            subredditTextBox.Text = returnedData.SubredditName;
+            UpdateUi(returnedData);
         }
 
         private void CoolButton_Click(object sender, EventArgs e)
         {
             var returnedData = _coolSubreddit.GetImageFromSubreddit();
+            UpdateUi(returnedData);
+        }
+
+        private void UpdateUi(SubredditImageInfo returnedData)
+        {
             pictureBox1.ImageLocation = returnedData.ImageLink;
             titleTextBox.Text = returnedData.PostTitle;
             usernameTextBox.Text = returnedData.PostAuthor;
