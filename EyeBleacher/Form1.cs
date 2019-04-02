@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using EyeBleacher.Subreddits;
+using EyeBleacher.SubredditUrlProviders;
 
 namespace EyeBleacher
 {
@@ -14,9 +15,9 @@ namespace EyeBleacher
         {
             InitializeComponent();
 
-            _cuteSubreddit = new CuteSubredditData();
-            _wholesomeSubreddit = new WholesomeSubredditData();
-            _coolSubreddit = new CoolSubredditData();
+            _cuteSubreddit = new CuteSubredditData(new Cute());
+            _wholesomeSubreddit = new WholesomeSubredditData(new Wholesome());
+            _coolSubreddit = new CoolSubredditData(new Cool());
 
         }
 

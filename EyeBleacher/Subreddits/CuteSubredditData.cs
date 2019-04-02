@@ -2,17 +2,25 @@
 using System.Linq;
 using System.Net;
 using EyeBleacher.DTOs;
+using EyeBleacher.SubredditUrlProviders;
 using Newtonsoft.Json;
 
 namespace EyeBleacher.Subreddits
 {
     public class CuteSubredditData : IGetSubredditImage
     {
+        private readonly ISubredditUrlProvider _urlProvider;
+
+        public CuteSubredditData(ISubredditUrlProvider urlProvider)
+        {
+            _urlProvider = urlProvider;
+        }
+
         public SubredditImageInfo GetImageFromSubreddit()
         {
             var client = new WebClient();
             var random = new Random();
-            var url = PickRandomCuteSubreddit();
+            var url = _urlProvider.PickRandomSubreddit();
             var cuteSubredditJsonDataRAW = client.DownloadString(url);
 
             var imageLinks = new string[25];
@@ -53,25 +61,6 @@ namespace EyeBleacher.Subreddits
             
             return new SubredditImageInfo(imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt]);
         }
-
-        private string PickRandomCuteSubreddit()
-        {
-            var random = new Random();
-            // List of subreddits that can be used to choose pictures from, feel free to add on to them
-            string[] cuteSubredditList = {
-                "https://www.reddit.com/r/eyebleach/hot.json?sort=hot",
-                "https://www.reddit.com/r/aww/hot.json?sort=hot",
-                "https://www.reddit.com/r/RarePuppers/hot.json?sort=hot",
-                "https://www.reddit.com/r/CatLoaf/hot.json?sort=hot",
-                "https://www.reddit.com/r/startledcats/hot.json?sort=hot",
-
-            };
-
-            var randInt = random.Next(0, cuteSubredditList.Length);
-
-            return cuteSubredditList[randInt];
-        }
-
 
     }
 }

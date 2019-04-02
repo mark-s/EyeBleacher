@@ -2,18 +2,26 @@
 using System.Linq;
 using System.Net;
 using EyeBleacher.DTOs;
+using EyeBleacher.SubredditUrlProviders;
 using Newtonsoft.Json;
 
 namespace EyeBleacher.Subreddits
 {
     public class CoolSubredditData : IGetSubredditImage
     {
+        private readonly ISubredditUrlProvider _urlProvider;
+
+        public CoolSubredditData(ISubredditUrlProvider urlProvider)
+        {
+            _urlProvider = urlProvider;
+        }
+
 
         public SubredditImageInfo GetImageFromSubreddit()
         {
             var client = new WebClient();
             var random = new Random();
-            var url = PickRandomCoolSubreddit();
+            var url = _urlProvider.PickRandomSubreddit();
             var coolSubredditJsonDataRAW = client.DownloadString(url);
 
             var imageLinks = new string[25];
@@ -55,21 +63,7 @@ namespace EyeBleacher.Subreddits
             return new SubredditImageInfo(imageLinks[randInt], imageTitle[randInt], "u/" + postAuthor[randInt], subredditName[randInt]);
         }
 
-        private string PickRandomCoolSubreddit()
-        {
-            var random = new Random();
-            // List of subreddits that can be used to choose pictures from, feel free to add on to them
-            string[] coolSubredditList = {
-                "https://www.reddit.com/r/astronomy/hot.json?sort=hot",
-                "https://www.reddit.com/r/EarthPorn/hot.json?sort=hot",
-                "https://www.reddit.com/r/MildlyInteresting/hot.json?sort=hot"
-                // Append any further subreddits here
-            };
 
-            var randInt = random.Next(0, coolSubredditList.Length);
-
-            return coolSubredditList[randInt];
-        }
 
 
     }
